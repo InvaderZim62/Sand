@@ -8,8 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4AAC06D127D6C9F700B178A5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAC06D027D6C9F700B178A5 /* AppDelegate.swift */; };
-		4AAC06D327D6C9F700B178A5 /* art.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC06D227D6C9F700B178A5 /* art.scnassets */; };
-		4AAC06D527D6C9F700B178A5 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAC06D427D6C9F700B178A5 /* GameViewController.swift */; };
+		4AAC06D527D6C9F700B178A5 /* SandViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAC06D427D6C9F700B178A5 /* SandViewController.swift */; };
 		4AAC06D827D6C9F700B178A5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC06D627D6C9F700B178A5 /* Main.storyboard */; };
 		4AAC06DA27D6C9F900B178A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC06D927D6C9F900B178A5 /* Assets.xcassets */; };
 		4AAC06DD27D6C9F900B178A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC06DB27D6C9F900B178A5 /* LaunchScreen.storyboard */; };
@@ -18,8 +17,7 @@
 /* Begin PBXFileReference section */
 		4AAC06CD27D6C9F700B178A5 /* Sand.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Sand.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AAC06D027D6C9F700B178A5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4AAC06D227D6C9F700B178A5 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
-		4AAC06D427D6C9F700B178A5 /* GameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		4AAC06D427D6C9F700B178A5 /* SandViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandViewController.swift; sourceTree = "<group>"; };
 		4AAC06D727D6C9F700B178A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4AAC06D927D6C9F900B178A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4AAC06DC27D6C9F900B178A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -40,6 +38,7 @@
 			isa = PBXGroup;
 			children = (
 				4AAC06CF27D6C9F700B178A5 /* Sand */,
+				4AAC06E327D6CA3000B178A5 /* Supporting Files */,
 				4AAC06CE27D6C9F700B178A5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -55,14 +54,20 @@
 		4AAC06CF27D6C9F700B178A5 /* Sand */ = {
 			isa = PBXGroup;
 			children = (
-				4AAC06D027D6C9F700B178A5 /* AppDelegate.swift */,
-				4AAC06D227D6C9F700B178A5 /* art.scnassets */,
-				4AAC06D427D6C9F700B178A5 /* GameViewController.swift */,
 				4AAC06D627D6C9F700B178A5 /* Main.storyboard */,
+				4AAC06D427D6C9F700B178A5 /* SandViewController.swift */,
+			);
+			path = Sand;
+			sourceTree = "<group>";
+		};
+		4AAC06E327D6CA3000B178A5 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4AAC06D027D6C9F700B178A5 /* AppDelegate.swift */,
 				4AAC06D927D6C9F900B178A5 /* Assets.xcassets */,
 				4AAC06DB27D6C9F900B178A5 /* LaunchScreen.storyboard */,
 			);
-			path = Sand;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -123,7 +128,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AAC06D327D6C9F700B178A5 /* art.scnassets in Resources */,
 				4AAC06DD27D6C9F900B178A5 /* LaunchScreen.storyboard in Resources */,
 				4AAC06DA27D6C9F900B178A5 /* Assets.xcassets in Resources */,
 				4AAC06D827D6C9F700B178A5 /* Main.storyboard in Resources */,
@@ -137,7 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AAC06D527D6C9F700B178A5 /* GameViewController.swift in Sources */,
+				4AAC06D527D6C9F700B178A5 /* SandViewController.swift in Sources */,
 				4AAC06D127D6C9F700B178A5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
