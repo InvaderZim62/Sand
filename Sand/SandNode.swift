@@ -16,11 +16,12 @@ class SandNode: SCNNode {
 
     override init() {
         super.init()
+        name = "Sand"
         let sand = SCNSphere(radius: Constants.sandRadius)
-        sand.firstMaterial?.diffuse.contents = UIColor.yellow
+        sand.firstMaterial?.diffuse.contents = Constants.sandColor
         geometry = sand
         physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-        physicsBody?.restitution = 0  // no bounciness
+//        physicsBody?.restitution = 0  // no bounciness
 //        physicsBody?.categoryBitMask = ContactCategory.sand
 //        physicsBody?.contactTestBitMask = ContactCategory.beach
     }
