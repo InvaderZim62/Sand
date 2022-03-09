@@ -21,8 +21,8 @@ class SandNode: SCNNode {
         sand.firstMaterial?.diffuse.contents = Constants.sandColor
         geometry = sand
         physicsBody = SCNPhysicsBody(type: .dynamic, shape: nil)
-//        physicsBody?.restitution = 0  // no bounciness
-//        physicsBody?.categoryBitMask = ContactCategory.sand
-//        physicsBody?.contactTestBitMask = ContactCategory.beach
+        physicsBody?.restitution = 0  // no bounciness
+        physicsBody?.friction = 1
+        physicsBody?.damping = 0.9
     }
 }

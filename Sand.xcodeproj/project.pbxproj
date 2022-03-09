@@ -13,7 +13,7 @@
 		4AAC06DA27D6C9F900B178A5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC06D927D6C9F900B178A5 /* Assets.xcassets */; };
 		4AAC06DD27D6C9F900B178A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4AAC06DB27D6C9F900B178A5 /* LaunchScreen.storyboard */; };
 		4AAC06E527D6CDCF00B178A5 /* SandNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAC06E427D6CDCF00B178A5 /* SandNode.swift */; };
-		4AAC06E727D729B200B178A5 /* BeachNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAC06E627D729B200B178A5 /* BeachNode.swift */; };
+		4AAC06E927D8281B00B178A5 /* FrameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAC06E827D8281B00B178A5 /* FrameNode.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,7 +24,7 @@
 		4AAC06D927D6C9F900B178A5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4AAC06DC27D6C9F900B178A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		4AAC06E427D6CDCF00B178A5 /* SandNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandNode.swift; sourceTree = "<group>"; };
-		4AAC06E627D729B200B178A5 /* BeachNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeachNode.swift; sourceTree = "<group>"; };
+		4AAC06E827D8281B00B178A5 /* FrameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameNode.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,7 @@
 				4AAC06D627D6C9F700B178A5 /* Main.storyboard */,
 				4AAC06D427D6C9F700B178A5 /* SandViewController.swift */,
 				4AAC06E427D6CDCF00B178A5 /* SandNode.swift */,
-				4AAC06E627D729B200B178A5 /* BeachNode.swift */,
+				4AAC06E827D8281B00B178A5 /* FrameNode.swift */,
 			);
 			path = Sand;
 			sourceTree = "<group>";
@@ -150,7 +150,7 @@
 				4AAC06D527D6C9F700B178A5 /* SandViewController.swift in Sources */,
 				4AAC06D127D6C9F700B178A5 /* AppDelegate.swift in Sources */,
 				4AAC06E527D6CDCF00B178A5 /* SandNode.swift in Sources */,
-				4AAC06E727D729B200B178A5 /* BeachNode.swift in Sources */,
+				4AAC06E927D8281B00B178A5 /* FrameNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
