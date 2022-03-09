@@ -79,27 +79,14 @@ class SandViewController: UIViewController {
     
     // rotate frameNode (turn off camera panning with allowsCameraControl = false, below)
     // note: this doesn't entirely work, since the sand doesn't always move with the frame
-    // from: https://stackoverflow.com/questions/38834092
+    // from: https://stackoverflow.com/questions/44781184
+    var pastAngle: Float = 0
     @objc func handlePan(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: sender.view!)
-
-        let panX = Float(translation.x)
-        let panY = Float(-translation.y)
-        let anglePan = sqrt(pow(panX,2) + pow(panY,2)) * Float.pi / 180
-        var rotVector = SCNVector4()
-
-        rotVector.x = -panY
-        rotVector.y = panX
-        rotVector.z = 0
-        rotVector.w = anglePan
-
-        frameNode.rotation = rotVector
-
+        let angle = Float(translation.y) * Float.pi / 180 + pastAngle
+        frameNode.eulerAngles.x = angle
         if sender.state == .ended {
-            let currentPivot = frameNode.pivot
-            let changePivot = SCNMatrix4Invert(frameNode.transform)
-            frameNode.pivot = SCNMatrix4Mult(changePivot, currentPivot)
-            frameNode.transform = SCNMatrix4Identity
+            pastAngle = angle
         }
     }
 
