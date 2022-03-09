@@ -38,6 +38,7 @@ class SandViewController: UIViewController {
     private var scnScene: SCNScene!
     private var cameraNode: SCNNode!
 
+    private var frameNode = FrameNode()
     private var sandNodes = [SandNode]()
     private var sandSpawnTime: TimeInterval = 0
     private var firstReleaseInterval = true
@@ -48,22 +49,22 @@ class SandViewController: UIViewController {
         setupScene()
         setupCamera()
         addFrameNode()
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(handlePan))
+        view.addGestureRecognizer(panGesture)
     }
 
     // create square frame in center of screen
     // origin (center of rotation) is center of frame
     // x: right, y: up, z: out of screen
     private func addFrameNode() {
-        let frameNode = FrameNode()
         frameNode.position = SCNVector3(0, 0, 0)
         scnScene.rootNode.addChildNode(frameNode)
     }
 
     private func addSandNode() {  // called from renderer, below
         let sandNode = SandNode()
-        let offset = CGFloat.random(in: -0.5...0.5)
-        let largestRadius = Constants.sandProperties[0].radius
-        sandNode.position = SCNVector3(offset, Constants.paneHeight / 2 - 2 * largestRadius, 0)
+        let offset = CGFloat.random(in: -0.4...0.4)
+        sandNode.position = SCNVector3(offset, 0, 0)
         sandNodes.append(sandNode)
         scnScene.rootNode.addChildNode(sandNode)
     }
@@ -75,12 +76,38 @@ class SandViewController: UIViewController {
             }
         }
     }
+    
+    // rotate frameNode (turn off camera panning with allowsCameraControl = false, below)
+    // note: this doesn't entirely work, since the sand doesn't always move with the frame
+    // from: https://stackoverflow.com/questions/38834092
+    @objc func handlePan(sender: UIPanGestureRecognizer) {
+        let translation = sender.translation(in: sender.view!)
+
+        let panX = Float(translation.x)
+        let panY = Float(-translation.y)
+        let anglePan = sqrt(pow(panX,2) + pow(panY,2)) * Float.pi / 180
+        var rotVector = SCNVector4()
+
+        rotVector.x = -panY
+        rotVector.y = panX
+        rotVector.z = 0
+        rotVector.w = anglePan
+
+        frameNode.rotation = rotVector
+
+        if sender.state == .ended {
+            let currentPivot = frameNode.pivot
+            let changePivot = SCNMatrix4Invert(frameNode.transform)
+            frameNode.pivot = SCNMatrix4Mult(changePivot, currentPivot)
+            frameNode.transform = SCNMatrix4Identity
+        }
+    }
 
     // MARK: - Setup
     
     private func setupView() {
         scnView = self.view as? SCNView
-        scnView.allowsCameraControl = true  // use standard camera controls with swiping
+        scnView.allowsCameraControl = false  // disable standard camera controls with swiping
         scnView.showsStatistics = true
         scnView.autoenablesDefaultLighting = true
         scnView.isPlaying = true  // prevent SceneKit from entering a "paused" state, if there isn't anything to animate
