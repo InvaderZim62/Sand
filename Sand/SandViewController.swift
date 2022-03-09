@@ -26,7 +26,8 @@ struct Constants {
     static let sandReleaseInterval = 0.08  // seconds between releasing grains of sand
     static let sandColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
     static let paneColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2)
-    static let paneSize: CGFloat = 10
+    static let paneWidth: CGFloat = 10
+    static let paneHeight: CGFloat = 6
     static let paneThickness: CGFloat = 0.1
     static let paneSeparation: CGFloat = 6 * sandRadius  // distance between front and rear pane centers
 }
@@ -61,7 +62,7 @@ class SandViewController: UIViewController {
     private func addSandNode() {  // called from renderer, below
         let sandNode = SandNode()
         let offset = CGFloat.random(in: -Constants.sandRadius...Constants.sandRadius)
-        sandNode.position = SCNVector3(offset, Constants.paneSize / 2 - 2 * Constants.sandRadius, 0)
+        sandNode.position = SCNVector3(offset, Constants.paneHeight / 2 - 2 * Constants.sandRadius, 0)
         sandNodes.append(sandNode)
         scnScene.rootNode.addChildNode(sandNode)
     }
