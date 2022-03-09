@@ -14,22 +14,22 @@ import SceneKit
 
 struct SandProperties {
     let color: UIColor
+    let radius: CGFloat
     let mass: CGFloat
+    let friction: CGFloat
 }
 
 struct Constants {
-    static let sandProperties = [SandProperties(color: #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1), mass: 0.1),
-                                 SandProperties(color: #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), mass: 0.5),
-                                 SandProperties(color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), mass: 1.0)]
-    static let sandCount = 600
-    static let sandRadius: CGFloat = 0.15
+    static let sandProperties = [SandProperties(color: #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1), radius: 0.14, mass: 0.1, friction: 0.3),
+                                 SandProperties(color: #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), radius: 0.13, mass: 0.5, friction: 0.6),
+                                 SandProperties(color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), radius: 0.12, mass: 1.0, friction: 0.9)]
+    static let sandCount = 400
     static let sandReleaseInterval = 0.08  // seconds between releasing grains of sand
-    static let sandColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
     static let paneColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2)
     static let paneWidth: CGFloat = 10
     static let paneHeight: CGFloat = 6
     static let paneThickness: CGFloat = 0.1
-    static let paneSeparation: CGFloat = 6 * sandRadius  // distance between front and rear pane centers
+    static let paneSeparation: CGFloat = 0.6  // distance between front and rear pane centers
 }
 
 class SandViewController: UIViewController {
@@ -61,8 +61,9 @@ class SandViewController: UIViewController {
 
     private func addSandNode() {  // called from renderer, below
         let sandNode = SandNode()
-        let offset = CGFloat.random(in: -Constants.sandRadius...Constants.sandRadius)
-        sandNode.position = SCNVector3(offset, Constants.paneHeight / 2 - 2 * Constants.sandRadius, 0)
+        let offset = CGFloat.random(in: -0.5...0.5)
+        let largestRadius = Constants.sandProperties[0].radius
+        sandNode.position = SCNVector3(offset, Constants.paneHeight / 2 - 2 * largestRadius, 0)
         sandNodes.append(sandNode)
         scnScene.rootNode.addChildNode(sandNode)
     }
