@@ -12,15 +12,23 @@ import UIKit
 import QuartzCore
 import SceneKit
 
+struct SandProperties {
+    let color: UIColor
+    let mass: CGFloat
+}
+
 struct Constants {
-    static let sandCount = 300
-    static let sandRadius: CGFloat = 0.1
-    static let sandReleaseInterval = 0.1  // seconds between releasing grains of sand
+    static let sandProperties = [SandProperties(color: #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1), mass: 0.1),
+                                 SandProperties(color: #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), mass: 0.5),
+                                 SandProperties(color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), mass: 1.0)]
+    static let sandCount = 600
+    static let sandRadius: CGFloat = 0.15
+    static let sandReleaseInterval = 0.08  // seconds between releasing grains of sand
     static let sandColor = #colorLiteral(red: 0.9994240403, green: 0.9855536819, blue: 0, alpha: 1)
     static let paneColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2)
     static let paneSize: CGFloat = 10
     static let paneThickness: CGFloat = 0.1
-    static let paneSeparation: CGFloat = 0.6  // distance between front and rear pane centers
+    static let paneSeparation: CGFloat = 6 * sandRadius  // distance between front and rear pane centers
 }
 
 class SandViewController: UIViewController {
@@ -53,7 +61,7 @@ class SandViewController: UIViewController {
     private func addSandNode() {  // called from renderer, below
         let sandNode = SandNode()
         let offset = CGFloat.random(in: -Constants.sandRadius...Constants.sandRadius)
-        sandNode.position = SCNVector3(offset, Constants.paneSize / 2, 0)
+        sandNode.position = SCNVector3(offset, Constants.paneSize / 2 - 2 * Constants.sandRadius, 0)
         sandNodes.append(sandNode)
         scnScene.rootNode.addChildNode(sandNode)
     }
