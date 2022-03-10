@@ -7,6 +7,12 @@
 //  Initial setup: File | New | Project | Game (Game Technology: SceneKit)
 //  Delete art.scnassets (move to Trash)
 //
+//  Device orientations:
+//    In addition to the Device Orientations properties under Targets | General, there may be
+//    left-over/redundant settings in: Targets | Build Settings | Info.plist Values.  I had to
+//    delete the settings labeled: "Supported Interface Orientations (iPhone)", so that the
+//    iPhone would use the settings labeled: "Supported Interface Orientations"
+//
 
 import UIKit
 import QuartzCore
@@ -26,8 +32,8 @@ struct Constants {
     static let sandCount = 400
     static let sandReleaseInterval = 0.08  // seconds between releasing grains of sand
     static let paneColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2)
-    static let paneWidth: CGFloat = 10
-    static let paneHeight: CGFloat = 6
+    static let paneWidth: CGFloat = 20
+    static let paneHeight: CGFloat = 10
     static let paneThickness: CGFloat = 0.1
     static let paneSeparation: CGFloat = 0.6  // distance between front and rear pane centers
 }
