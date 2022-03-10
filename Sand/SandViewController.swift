@@ -17,6 +17,7 @@
 import UIKit
 import QuartzCore
 import SceneKit
+import CoreMotion  // needed for accelerometers
 
 struct SandProperties {
     let color: UIColor
@@ -29,13 +30,14 @@ struct Constants {
     static let sandProperties = [SandProperties(color: #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1), radius: 0.14, mass: 0.1, friction: 0.3),
                                  SandProperties(color: #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), radius: 0.13, mass: 0.5, friction: 0.6),
                                  SandProperties(color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), radius: 0.12, mass: 1.0, friction: 0.9)]
-    static let sandCount = 400
+    static let sandCount = 600
     static let sandReleaseInterval = 0.08  // seconds between releasing grains of sand
     static let paneColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2)
     static let paneWidth: CGFloat = 20
     static let paneHeight: CGFloat = 10
     static let paneThickness: CGFloat = 0.1
     static let paneSeparation: CGFloat = 0.6  // distance between front and rear pane centers
+    static let gravity = 9.81  // m/s^2
 }
 
 class SandViewController: UIViewController {
@@ -43,6 +45,7 @@ class SandViewController: UIViewController {
     private var scnView: SCNView!
     private var scnScene: SCNScene!
     private var cameraNode: SCNNode!
+    private let motionManager = CMMotionManager()  // needed for accelerometers
 
     private var sandNodes = [SandNode]()
     private var sandSpawnTime: TimeInterval = 0
@@ -56,6 +59,25 @@ class SandViewController: UIViewController {
         addFrameNode()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        // use accelerometers to determine direction of gravity
+        if motionManager.isAccelerometerAvailable {
+            motionManager.accelerometerUpdateInterval = 0.1
+            motionManager.startAccelerometerUpdates(to: .main) { (data, error) in
+                if let x = data?.acceleration.x, let y = data?.acceleration.y, let z = data?.acceleration.z {
+                    self.scnScene.physicsWorld.gravity = SCNVector3(x: Float(Constants.gravity * y), y: -Float(Constants.gravity * x), z: Float(Constants.gravity * z))
+                }
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        motionManager.stopAccelerometerUpdates()
+    }
+
     // create square frame in center of screen
     // origin (center of rotation) is center of frame
     // x: right, y: up, z: out of screen
@@ -67,16 +89,15 @@ class SandViewController: UIViewController {
 
     private func addSandNode() {  // called from renderer, below
         let sandNode = SandNode()
-        let offset = CGFloat.random(in: -0.5...0.5)
-        let largestRadius = Constants.sandProperties[0].radius
-        sandNode.position = SCNVector3(offset, Constants.paneHeight / 2 - 2 * largestRadius, 0)
+        let offset = CGFloat.random(in: -0.4...0.4)
+        sandNode.position = SCNVector3(offset, 0, 0)
         sandNodes.append(sandNode)
         scnScene.rootNode.addChildNode(sandNode)
     }
     
     private func cleanScene() {
         for node in scnScene.rootNode.childNodes {
-            if node.presentation.position.y < -10 {  // delete node if below screen
+            if node.presentation.position.z < -10 {  // delete node if falling into screen
                 node.removeFromParentNode()
             }
         }
@@ -86,7 +107,7 @@ class SandViewController: UIViewController {
     
     private func setupView() {
         scnView = self.view as? SCNView
-        scnView.allowsCameraControl = true  // use standard camera controls with swiping
+        scnView.allowsCameraControl = false  // disable standard camera controls with swiping
         scnView.showsStatistics = true
         scnView.autoenablesDefaultLighting = true
         scnView.isPlaying = true  // prevent SceneKit from entering a "paused" state, if there isn't anything to animate
