@@ -50,6 +50,8 @@ class SandViewController: UIViewController {
     private var sandNodes = [SandNode]()
     private var sandSpawnTime: TimeInterval = 0
     private var firstReleaseInterval = true
+    
+    // MARK: - Lifecycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -61,7 +63,6 @@ class SandViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         // use accelerometers to determine direction of gravity
         if motionManager.isAccelerometerAvailable {
             motionManager.accelerometerUpdateInterval = 0.1
@@ -77,6 +78,8 @@ class SandViewController: UIViewController {
         super.viewWillDisappear(animated)
         motionManager.stopAccelerometerUpdates()
     }
+    
+    // MARK: - Start of code
 
     // create square frame in center of screen
     // origin (center of rotation) is center of frame
@@ -103,7 +106,7 @@ class SandViewController: UIViewController {
         }
     }
 
-    // MARK: - Setup
+    // MARK: - Setup functions
     
     private func setupView() {
         scnView = self.view as? SCNView
@@ -129,7 +132,9 @@ class SandViewController: UIViewController {
     }
 }
 
-// spawn grains of sand
+// MARK: - Extensions
+
+// spawn grains of sand every sandReleaseInterval
 extension SandViewController: SCNSceneRendererDelegate {
     func renderer(_ renderer: SCNSceneRenderer, updateAtTime time: TimeInterval) {
         if time > sandSpawnTime && sandNodes.count < Constants.sandCount {
