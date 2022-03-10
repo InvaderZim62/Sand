@@ -7,6 +7,13 @@
 //  Initial setup: File | New | Project | Game (Game Technology: SceneKit)
 //  Delete art.scnassets (move to Trash)
 //
+//  Issues:
+//  When rotating the frame too quickly, the physics engine can't keep up, and the sand passes through the frame.
+//  I tried changing the following properties, with no luck:
+//  - scnScene.physicsWorld.timeStep = 1/300
+//  - SandNode  physicsBody?.continuousCollisionDetectionThreshold = properties.radius / 2
+//  - FrameNode physicsBody?.continuousCollisionDetectionThreshold = Constants.paneThickness / 2
+//
 
 import UIKit
 import QuartzCore
@@ -42,6 +49,7 @@ class SandViewController: UIViewController {
     private var sandNodes = [SandNode]()
     private var sandSpawnTime: TimeInterval = 0
     private var firstReleaseInterval = true
+    private var pastAngle: Float = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -80,7 +88,6 @@ class SandViewController: UIViewController {
     // rotate frameNode (turn off camera panning with allowsCameraControl = false, below)
     // note: this doesn't entirely work, since the sand doesn't always move with the frame
     // from: https://stackoverflow.com/questions/44781184
-    var pastAngle: Float = 0
     @objc func handlePan(sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: sender.view!)
         let angle = Float(translation.y) * Float.pi / 180 + pastAngle
