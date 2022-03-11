@@ -75,6 +75,6 @@ class FrameNode: SCNNode {
         leftNode.position = SCNVector3(x: -Float(Constants.paneWidth / 2 + Constants.paneThickness / 2), y: 0, z: 0)
         addChildNode(leftNode)
 
-        physicsBody = SCNPhysicsBody(type: .static, shape: nil)
+        physicsBody = SCNPhysicsBody.static()
     }
 }
