@@ -27,7 +27,7 @@ class SandNode: SCNNode {
         physicsBody = SCNPhysicsBody.dynamic()
         physicsBody?.restitution = 0  // no bounciness
         physicsBody?.friction = properties.friction
-        physicsBody?.damping = 0.9  // bigger falls slower
+        physicsBody?.damping = properties.damping  // bigger moves slower
         physicsBody?.mass = properties.mass
         physicsBody?.categoryBitMask = PhysicsCategory.sand
     }

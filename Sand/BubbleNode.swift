@@ -22,7 +22,7 @@ class BubbleNode: SCNNode {
         geometry = bubble
         physicsBody = SCNPhysicsBody.dynamic()
         physicsBody?.restitution = 0  // no bounciness
-        physicsBody?.friction = 1
+        physicsBody?.friction = 0.7
         physicsBody?.isAffectedByGravity = false  // replace with custom gravity field
         physicsBody?.categoryBitMask = PhysicsCategory.bubble
     }

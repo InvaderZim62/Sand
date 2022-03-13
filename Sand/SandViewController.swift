@@ -24,6 +24,7 @@ struct SandProperties {
     let radius: CGFloat
     let mass: CGFloat
     let friction: CGFloat
+    let damping: CGFloat
 }
 
 struct PhysicsCategory {
@@ -32,20 +33,20 @@ struct PhysicsCategory {
 }
 
 struct Constants {
-    static let sandProperties = [SandProperties(color: #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1), radius: 0.14, mass: 0.1, friction: 0.3),
-                                 SandProperties(color: #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), radius: 0.13, mass: 0.5, friction: 0.6),
-                                 SandProperties(color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), radius: 0.12, mass: 1.0, friction: 0.9)]
-    static let sandCount = 600
-    static let sandReleaseInterval = 0.08  // seconds between releasing grains of sand
-    static let bubbleCount = 40
-    static let bubbleRadius = 0.2
+    static let sandProperties = [SandProperties(color: #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1), radius: 0.13, mass: 0.1, friction: 0.9, damping: 0.9),
+                                 SandProperties(color: #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), radius: 0.12, mass: 0.5, friction: 0.9, damping: 0.4),
+                                 SandProperties(color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), radius: 0.12, mass: 1.0, friction: 0.9, damping: 0.1)]
+    static let sandCount = 800
+    static let sandReleaseInterval = 0.06  // seconds between releasing grains of sand
+    static let bubbleCount = 300
+    static let bubbleRadius = 0.15
     static let bubbleColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.4)  // semi-transparent
     static let paneColor = UIColor(red: 1, green: 1, blue: 1, alpha: 0.2)  // semi-transparent
     static let paneWidth: CGFloat = 20
-    static let paneHeight: CGFloat = 10
+    static let paneHeight: CGFloat = 14
     static let paneThickness: CGFloat = 0.1
     static let paneSeparation: CGFloat = 0.6  // distance between front and rear pane centers
-    static let gravity = 9.81  // m/s^2
+    static let gravity = 4.0  // m/s^2
 }
 
 class SandViewController: UIViewController {
@@ -105,7 +106,7 @@ class SandViewController: UIViewController {
     private func addBuoyancyField() {
         // add custom gravity field that only affects balloon
         buoyancyField = SCNPhysicsField.linearGravity()
-        buoyancyField.strength = 3  // m/s^2
+        buoyancyField.strength = 5  // m/s^2
         buoyancyField.direction = SCNVector3(x: 0, y: 1, z: 0)  // start with gravity up (change direction above)
         buoyancyField.categoryBitMask = PhysicsCategory.bubble  // if mask not specified, field affects everything (sand and bubbles)
         let buoyancyNode = SCNNode()
@@ -124,7 +125,8 @@ class SandViewController: UIViewController {
     private func addBubbleNode() {  // called from renderer, below
         let bubbleNode = BubbleNode()
         let offset = CGFloat.random(in: -Constants.paneWidth/2...Constants.paneWidth/2)
-        bubbleNode.position = SCNVector3(offset, 0, 0)
+        bubbleNode.position = SCNVector3(offset, -Constants.paneHeight / 4, 0)
+        bubbleNode.physicsBody?.damping = 0.9  // bigger rises slower
         bubbleNodes.append(bubbleNode)
         scnScene.rootNode.addChildNode(bubbleNode)
     }
