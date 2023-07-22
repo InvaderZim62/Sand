@@ -8,6 +8,6 @@ you can do better.
 
 The animation starts after I flipped my iPhone over.
 
-![Sand Art](https://github.com/InvaderZim62/Sand/assets/34785252/392eabd6-15fc-4b64-974e-8e9cb1e34668)
+![Sand Art](https://github.com/InvaderZim62/Sand/assets/34785252/427cb320-cda2-458a-81e6-ff751cd06f07)
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-![Sand Art](https://github.com/InvaderZim62/Sand/assets/34785252/cf369b45-1dc6-49ae-bb5e-0a0e74420ced)
+![Sand Art](https://github.com/InvaderZim62/Sand/assets/34785252/14752e1e-b991-4ae6-b4ad-cb2475bdf9c6)
