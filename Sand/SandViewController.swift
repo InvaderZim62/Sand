@@ -27,13 +27,13 @@ struct SandProperties {
     let damping: CGFloat
 }
 
-struct PhysicsCategory {
+struct PhysicsCategory {  // see !100 Days | Swift | !SpriteKit Apps | Project26 for enum version using Uint32
     static let bubble = 1 << 0
-    static let sand = 1 << 2  // 1 << 1 doesn't work, for some reason (sand falls through frame)
+    static let sand = 1 << 2  // 1 << 1 doesn't work, for some reason (sand falls through frame) - maybe needs to be Uint32?
 }
 
 struct Constants {
-    static let sandProperties = [SandProperties(color: #colorLiteral(red: 0.9999960065, green: 1, blue: 1, alpha: 1), radius: 0.13, mass: 0.1, friction: 0.9, damping: 0.9),
+    static let sandProperties = [SandProperties(color: #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1), radius: 0.13, mass: 0.1, friction: 0.9, damping: 0.9),
                                  SandProperties(color: #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), radius: 0.12, mass: 0.5, friction: 0.9, damping: 0.4),
                                  SandProperties(color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), radius: 0.12, mass: 1.0, friction: 0.9, damping: 0.1)]
     static let sandCount = 800
