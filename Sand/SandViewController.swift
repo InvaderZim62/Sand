@@ -33,7 +33,7 @@ struct PhysicsCategory {  // see !100 Days | Swift | !SpriteKit Apps | Project26
 }
 
 struct Constants {
-    static let sandProperties = [SandProperties(color: #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1), radius: 0.13, mass: 0.1, friction: 0.9, damping: 0.9),
+    static let sandProperties = [SandProperties(color: #colorLiteral(red: 0, green: 0.5603182912, blue: 0, alpha: 1), radius: 0.13, mass: 0.1, friction: 0.9, damping: 0.9),
                                  SandProperties(color: #colorLiteral(red: 0.01680417731, green: 0.1983509958, blue: 1, alpha: 1), radius: 0.12, mass: 0.5, friction: 0.9, damping: 0.4),
                                  SandProperties(color: #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), radius: 0.12, mass: 1.0, friction: 0.9, damping: 0.1)]
     static let sandCount = 800
@@ -104,10 +104,10 @@ class SandViewController: UIViewController {
     }
         
     private func addBuoyancyField() {
-        // add custom gravity field that only affects balloon
+        // add custom gravity field that only affects bubbles
         buoyancyField = SCNPhysicsField.linearGravity()
         buoyancyField.strength = 5  // m/s^2
-        buoyancyField.direction = SCNVector3(x: 0, y: 1, z: 0)  // start with gravity up (change direction above)
+        buoyancyField.direction = SCNVector3(x: 0, y: 1, z: 0)  // start with gravity up-scene (change direction to up-accelerometers above)
         buoyancyField.categoryBitMask = PhysicsCategory.bubble  // if mask not specified, field affects everything (sand and bubbles)
         let buoyancyNode = SCNNode()
         buoyancyNode.physicsField = buoyancyField

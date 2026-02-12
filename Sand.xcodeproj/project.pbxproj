@@ -44,7 +44,6 @@
 			isa = PBXGroup;
 			children = (
 				4AAC06CF27D6C9F700B178A5 /* Sand */,
-				4AAC06E327D6CA3000B178A5 /* Supporting Files */,
 				4AAC06CE27D6C9F700B178A5 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -65,6 +64,7 @@
 				4AAC06E427D6CDCF00B178A5 /* SandNode.swift */,
 				4AAC070E27DBF36C00B178A5 /* BubbleNode.swift */,
 				4AAC06E827D8281B00B178A5 /* FrameNode.swift */,
+				4AAC06E327D6CA3000B178A5 /* Supporting Files */,
 			);
 			path = Sand;
 			sourceTree = "<group>";
