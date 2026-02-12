@@ -15,6 +15,7 @@
 		4AAC06E527D6CDCF00B178A5 /* SandNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAC06E427D6CDCF00B178A5 /* SandNode.swift */; };
 		4AAC06E927D8281B00B178A5 /* FrameNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAC06E827D8281B00B178A5 /* FrameNode.swift */; };
 		4AAC070F27DBF36C00B178A5 /* BubbleNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAC070E27DBF36C00B178A5 /* BubbleNode.swift */; };
+		4AC7DF1C2F3D88D000BF3ECF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC7DF1B2F3D88D000BF3ECF /* SceneDelegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,8 @@
 		4AAC06E427D6CDCF00B178A5 /* SandNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SandNode.swift; sourceTree = "<group>"; };
 		4AAC06E827D8281B00B178A5 /* FrameNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameNode.swift; sourceTree = "<group>"; };
 		4AAC070E27DBF36C00B178A5 /* BubbleNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleNode.swift; sourceTree = "<group>"; };
+		4AC7DF1B2F3D88D000BF3ECF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		4AC7DF1D2F3D88E800BF3ECF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,6 +68,7 @@
 				4AAC070E27DBF36C00B178A5 /* BubbleNode.swift */,
 				4AAC06E827D8281B00B178A5 /* FrameNode.swift */,
 				4AAC06E327D6CA3000B178A5 /* Supporting Files */,
+				4AC7DF1D2F3D88E800BF3ECF /* Info.plist */,
 			);
 			path = Sand;
 			sourceTree = "<group>";
@@ -73,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				4AAC06D027D6C9F700B178A5 /* AppDelegate.swift */,
+				4AC7DF1B2F3D88D000BF3ECF /* SceneDelegate.swift */,
 				4AAC06D927D6C9F900B178A5 /* Assets.xcassets */,
 				4AAC06DB27D6C9F900B178A5 /* LaunchScreen.storyboard */,
 			);
@@ -155,6 +160,7 @@
 				4AAC070F27DBF36C00B178A5 /* BubbleNode.swift in Sources */,
 				4AAC06E527D6CDCF00B178A5 /* SandNode.swift in Sources */,
 				4AAC06E927D8281B00B178A5 /* FrameNode.swift in Sources */,
+				4AC7DF1C2F3D88D000BF3ECF /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,6 +311,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 65Z9KA7SHC;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sand/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -334,6 +341,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 65Z9KA7SHC;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Sand/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
